@@ -73,10 +73,27 @@ class BerlinClockTests: XCTestCase {
     func testOneHourBlockResultForGivenTime(){
         let testOne = dateFormatter!.date(from: "23:59:59")
         let testOneExpectedResult = [cellType.Red,cellType.Red,cellType.Red,cellType.Blank]
+        let testTwo = dateFormatter!.date(from: "00:00:00")
+        let testTwoExpectedResult = [cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank]
+        let testThree = dateFormatter!.date(from: "02:04:00")
+        let testThreeExpectedResult = [cellType.Red,cellType.Red,cellType.Blank,cellType.Blank]
+        let testFour = dateFormatter!.date(from: "08:23:00")
+        let testFourExpectedResult = [cellType.Red,cellType.Red,cellType.Red,cellType.Blank]
+        let testFive = dateFormatter!.date(from: "14:35:00")
+        let testFiveExpectedResult = [cellType.Red,cellType.Red,cellType.Red,cellType.Red]
         
         let testOneResult = berlinCalendarPresenter.valuesForSingleHoursRow(time: testOne!)
+        let testTwoResult = berlinCalendarPresenter.valuesForSingleHoursRow(time: testTwo!)
+        let testThreeResult = berlinCalendarPresenter.valuesForSingleHoursRow(time: testThree!)
+        let testFourResult = berlinCalendarPresenter.valuesForSingleHoursRow(time: testFour!)
+        let testFiveResult = berlinCalendarPresenter.valuesForSingleHoursRow(time: testFive!)
         
         XCTAssertEqual(testOneExpectedResult, testOneResult)
+        XCTAssertEqual(testTwoExpectedResult, testTwoResult)
+        XCTAssertEqual(testThreeExpectedResult, testThreeResult)
+        XCTAssertEqual(testFourExpectedResult, testFourResult)
+        XCTAssertEqual(testFiveExpectedResult, testFiveResult)
+        XCTAssertNotEqual(testOneExpectedResult, testTwoResult)
     }
 
 }
