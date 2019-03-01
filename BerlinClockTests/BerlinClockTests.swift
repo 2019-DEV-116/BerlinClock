@@ -125,10 +125,14 @@ class BerlinClockTests: XCTestCase {
     func testSecondsBlockResultForGivenTime(){
         let testOne = dateFormatter!.date(from: "00:00:00")
         let testOneExpectedResult = [cellType.Red]
+        let testTwo = dateFormatter!.date(from: "23:59:59")
+        let testTwoExpectedResult = [cellType.Blank]
         
         let testOneResult = berlinCalendarPresenter.valuesForSecondsRow(time : testOne!)
+        let testTwoResult = berlinCalendarPresenter.valuesForSecondsRow(time : testTwo!)
         
         XCTAssertEqual(testOneExpectedResult, testOneResult)
+        XCTAssertEqual(testTwoExpectedResult, testTwoResult)
         
     }
 

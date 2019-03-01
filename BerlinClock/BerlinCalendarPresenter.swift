@@ -85,6 +85,13 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     
     func valuesForSecondsRow(time: Date) -> [BerlinClockUICellType] {
         var defaultValuesForSecondsRowArr = [BerlinClockUICellType](repeating: .Blank, count: SECOND_CELL_COUNT)
+        let calendarCurrent = Calendar.current
+        let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
+        let second = calendarComponent.second
+        let secondsLamp = second! % 2
+        if(secondsLamp == 0){
+            defaultValuesForSecondsRowArr[0] = .Red
+        }
         return defaultValuesForSecondsRowArr
     }
     
