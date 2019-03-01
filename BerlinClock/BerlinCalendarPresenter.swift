@@ -67,4 +67,9 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
         return defaultValuesForSingleHourRowArr
     }
     
+    func valuesForFiveHoursRow(time: Date) -> [BerlinClockUICellType] {
+        var defaultValuesForFiveHourRowArr = [BerlinClockUICellType](repeating: .Blank, count: SINGLE_HOUR_CELL_COUNT)
+        return defaultValuesForFiveHourRowArr
+    }
+    
 }

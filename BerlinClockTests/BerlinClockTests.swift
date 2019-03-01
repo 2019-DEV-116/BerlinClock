@@ -95,5 +95,15 @@ class BerlinClockTests: XCTestCase {
         XCTAssertEqual(testFiveExpectedResult, testFiveResult)
         XCTAssertNotEqual(testOneExpectedResult, testTwoResult)
     }
+    
+    func testFiveHourBlockResultForGivenTime(){
+        let testOne = dateFormatter!.date(from: "23:59:59")
+        let testOneExpectedResult = [cellType.Red,cellType.Red,cellType.Red,cellType.Blank]
+        
+        let testOneResult = berlinCalendarPresenter.valuesForFiveHoursRow(time: testOne!)
+        
+        XCTAssertEqual(testOneResult, testOneExpectedResult)
+        
+    }
 
 }
