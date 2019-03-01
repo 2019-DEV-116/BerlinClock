@@ -98,7 +98,7 @@ class BerlinClockTests: XCTestCase {
     
     func testFiveHourBlockResultForGivenTime(){
         let testOne = dateFormatter!.date(from: "23:59:59")
-        let testOneExpectedResult = [cellType.Red,cellType.Red,cellType.Red,cellType.Blank]
+        let testOneExpectedResult = [cellType.Red,cellType.Red,cellType.Red,cellType.Red]
         
         let testOneResult = berlinCalendarPresenter.valuesForFiveHoursRow(time: testOne!)
         

@@ -68,7 +68,18 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     }
     
     func valuesForFiveHoursRow(time: Date) -> [BerlinClockUICellType] {
-        var defaultValuesForFiveHourRowArr = [BerlinClockUICellType](repeating: .Blank, count: SINGLE_HOUR_CELL_COUNT)
+        var defaultValuesForFiveHourRowArr = [BerlinClockUICellType](repeating: .Blank, count: FIVE_HOUR_CELL_COUNT)
+        let calendarCurrent = Calendar.current
+        let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
+        let hour = calendarComponent.hour
+        let fiveHoursRow = hour! / 5
+        for (index,_) in defaultValuesForFiveHourRowArr.enumerated() {
+            if (index < fiveHoursRow) {
+                defaultValuesForFiveHourRowArr[index] = .Red
+            }else{
+                break
+            }
+        }
         return defaultValuesForFiveHourRowArr
     }
     
