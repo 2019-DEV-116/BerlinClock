@@ -96,8 +96,13 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     }
     
     func digitalToBerlin(time: Date) -> [[BerlinClockUICellType]] {
-        let arrSample : [BerlinClockUICellType] = [.Red]
-        let resultArr : [[BerlinClockUICellType]] = [arrSample,arrSample,arrSample,arrSample,arrSample]
+        let oneMinutesRow = self.valuesForSingleMinutesRow(time: time)
+        let fiveMinutesRow = self.valuesForFiveMinutesRow(time: time)
+        let oneHourRow = self.valuesForSingleHoursRow(time: time)
+        let fiveHoursRow = self.valuesForFiveHoursRow(time: time)
+        let secondsLamp = self.valuesForSecondsRow(time: time)
+        
+        let resultArr : [[BerlinClockUICellType]] = [secondsLamp,fiveHoursRow,oneHourRow,fiveMinutesRow,oneMinutesRow]
         
         return resultArr
     }
