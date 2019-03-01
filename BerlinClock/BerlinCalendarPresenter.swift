@@ -52,7 +52,18 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     }
     
     func valuesForSingleHoursRow(time: Date) -> [BerlinClockUICellType] {
-        var defaultValuesForSingleHourRowArr = [BerlinClockUICellType](repeating: .Blank, count: FIVE_MINUTE_CELL_COUNT)
+        var defaultValuesForSingleHourRowArr = [BerlinClockUICellType](repeating: .Blank, count: SINGLE_HOUR_CELL_COUNT)
+        let calendarCurrent = Calendar.current
+        let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
+        let hour = calendarComponent.hour
+        let singleHoursRow = hour! % 5
+        for (index,_) in defaultValuesForSingleHourRowArr.enumerated() {
+            if (index < singleHoursRow) {
+                defaultValuesForSingleHourRowArr[index] = .Red
+            }else{
+                break
+            }
+        }
         return defaultValuesForSingleHourRowArr
     }
     
