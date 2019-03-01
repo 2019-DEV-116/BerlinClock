@@ -43,14 +43,31 @@ class BerlinClockTests: XCTestCase {
         XCTAssertNotEqual(valuesForSingleMinutesRowArrTestOne, testTwoExpectedResult)
     }
     
-    
     func testFiveMinuteBlockResultForGivenTime(){
         let testOne = dateFormatter!.date(from: "23:59:59")
         let testOneExpectedResult = [cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow]
+        let testTwo = dateFormatter!.date(from: "00:00:00")
+        let testTwoExpectedResult = [cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank]
+        let testThree = dateFormatter!.date(from: "12:04:00")
+        let testThreeExpectedResult = [cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank]
+        let testFour = dateFormatter!.date(from: "12:23:00")
+        let testFourExpectedResult = [cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank]
+        let testFive = dateFormatter!.date(from: "12:35:00")
+        let testFiveExpectedResult = [cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow
+            ,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank]
         
         let testOneResult = berlinCalendarPresenter.valuesForFiveMinutesRow(time : testOne!)
+        let testTwoResult = berlinCalendarPresenter.valuesForFiveMinutesRow(time : testTwo!)
+        let testThreeResult = berlinCalendarPresenter.valuesForFiveMinutesRow(time : testThree!)
+        let testFourResult = berlinCalendarPresenter.valuesForFiveMinutesRow(time : testFour!)
+        let testFiveResult = berlinCalendarPresenter.valuesForFiveMinutesRow(time : testFive!)
         
         XCTAssertEqual(testOneExpectedResult, testOneResult)
+        XCTAssertEqual(testTwoExpectedResult, testTwoResult)
+        XCTAssertEqual(testThreeExpectedResult, testThreeResult)
+        XCTAssertEqual(testFourExpectedResult, testFourResult)
+        XCTAssertEqual(testFiveExpectedResult, testFiveResult)
+        XCTAssertNotEqual(testOneExpectedResult, testTwoResult)
     }
 
 }
