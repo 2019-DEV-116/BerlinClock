@@ -17,4 +17,6 @@ protocol BerlinClockPresenterProtocol{
     
     func digitalToBerlin(time: Date) -> [[BerlinClockUICellType]]
     
+    func berlinToDigital(berlinDataArr : [BerlinClockUICellType]) -> String
+    
 }

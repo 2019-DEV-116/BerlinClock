@@ -2,7 +2,7 @@
 import Foundation
 
 class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
-
+    
     var berlinClockView : BerlinClockView?
     
     func setBerlinClockView(berlinClockView: BerlinClockView) {
@@ -105,6 +105,10 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
         let resultArr : [[BerlinClockUICellType]] = [secondsLamp,fiveHoursRow,oneHourRow,fiveMinutesRow,oneMinutesRow]
         
         return resultArr
+    }
+    
+    func berlinToDigital(berlinDataArr: [BerlinClockUICellType]) -> String {
+        return "00:00:00"
     }
     
 }

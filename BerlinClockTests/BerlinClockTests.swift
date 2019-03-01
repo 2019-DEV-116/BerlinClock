@@ -156,4 +156,12 @@ class BerlinClockTests: XCTestCase {
         XCTAssertEqual(testFourResult, testFourExpectedResult)
         XCTAssertNotEqual(testOneResult, testTwoExpectedResult)
     }
+    
+    func testBerlinToDigital(){
+        let testOneExpectedResult = "23:59:01"
+        let testOne = [cellType.Blank,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Blank,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Yellow,cellType.Yellow,cellType.Yellow,cellType.Yellow]
+        
+        let testOneResult = berlinCalendarPresenter.berlinToDigital(berlinDataArr : testOne)
+        XCTAssertEqual(testOneResult, testOneExpectedResult)
+    }
 }
