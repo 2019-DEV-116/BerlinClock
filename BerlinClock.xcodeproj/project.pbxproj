@@ -16,6 +16,8 @@
 		49E039F822292315005E672B /* BerlinClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F722292315005E672B /* BerlinClockUITests.swift */; };
 		49E03A0622292473005E672B /* BerlinClockUICellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E03A0522292473005E672B /* BerlinClockUICellType.swift */; };
 		49E03A0822293130005E672B /* BerlinCalendarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E03A0722293130005E672B /* BerlinCalendarPresenter.swift */; };
+		49E03A0A222937D2005E672B /* BerlinClockPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E03A09222937D2005E672B /* BerlinClockPresenterProtocol.swift */; };
+		49E03A0C2229393F005E672B /* BerlinClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E03A0B2229393F005E672B /* BerlinClockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		49E039F922292315005E672B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49E03A0522292473005E672B /* BerlinClockUICellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockUICellType.swift; sourceTree = "<group>"; };
 		49E03A0722293130005E672B /* BerlinCalendarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinCalendarPresenter.swift; sourceTree = "<group>"; };
+		49E03A09222937D2005E672B /* BerlinClockPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockPresenterProtocol.swift; sourceTree = "<group>"; };
+		49E03A0B2229393F005E672B /* BerlinClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				49E039E322292315005E672B /* Info.plist */,
 				49E03A0522292473005E672B /* BerlinClockUICellType.swift */,
 				49E03A0722293130005E672B /* BerlinCalendarPresenter.swift */,
+				49E03A09222937D2005E672B /* BerlinClockPresenterProtocol.swift */,
+				49E03A0B2229393F005E672B /* BerlinClockView.swift */,
 			);
 			path = BerlinClock;
 			sourceTree = "<group>";
@@ -262,10 +268,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49E03A0A222937D2005E672B /* BerlinClockPresenterProtocol.swift in Sources */,
 				49E03A0622292473005E672B /* BerlinClockUICellType.swift in Sources */,
 				49E039DA22292313005E672B /* ViewController.swift in Sources */,
 				49E03A0822293130005E672B /* BerlinCalendarPresenter.swift in Sources */,
 				49E039D822292313005E672B /* AppDelegate.swift in Sources */,
+				49E03A0C2229393F005E672B /* BerlinClockView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
