@@ -4,6 +4,7 @@ import Foundation
 class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     
     var berlinClockView : BerlinClockView?
+    let calendarCurrent = Calendar.current
     
     func setBerlinClockView(berlinClockView: BerlinClockView) {
         self.berlinClockView = berlinClockView
@@ -17,13 +18,12 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     
     func valuesForSingleMinutesRow(time : Date) -> [BerlinClockUICellType]{
         var valuesForSingleMinutesRowArr = [BerlinClockUICellType](repeating: .Blank, count: SINGLE_MINUTE_CELL_COUNT)
-        let calendarCurrent = Calendar.current
         let calendarComponent =  calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
         let minute = calendarComponent.minute
         let oneMinute = minute! % 5
-        for (index,_) in valuesForSingleMinutesRowArr.enumerated() {
-            if (index < oneMinute) {
-                valuesForSingleMinutesRowArr[index] = BerlinClockUICellType.Yellow
+        for (positionInArr,_) in valuesForSingleMinutesRowArr.enumerated() {
+            if (positionInArr < oneMinute) {
+                valuesForSingleMinutesRowArr[positionInArr] = BerlinClockUICellType.Yellow
             }else{
                 break
             }
@@ -33,16 +33,15 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     
     func valuesForFiveMinutesRow(time: Date) -> [BerlinClockUICellType] {
         var defaultValuesForFiveMinutesRowArr = [BerlinClockUICellType](repeating: .Blank, count: FIVE_MINUTE_CELL_COUNT)
-        let calendarCurrent = Calendar.current
         let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
         let minute = calendarComponent.minute
         let fiveMinutesCount = minute! / 5
-        for (index,_) in defaultValuesForFiveMinutesRowArr.enumerated() {
-            if (index < fiveMinutesCount) {
-                if(index == 2 || index == 5 || index == 8){
-                    defaultValuesForFiveMinutesRowArr[index] = .Red
+        for (positionInArr,_) in defaultValuesForFiveMinutesRowArr.enumerated() {
+            if (positionInArr < fiveMinutesCount) {
+                if(positionInArr == 2 || positionInArr == 5 || positionInArr == 8){
+                    defaultValuesForFiveMinutesRowArr[positionInArr] = .Red
                 }else{
-                    defaultValuesForFiveMinutesRowArr[index] = .Yellow
+                    defaultValuesForFiveMinutesRowArr[positionInArr] = .Yellow
                 }
             }else{
                 break
@@ -53,13 +52,12 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     
     func valuesForSingleHoursRow(time: Date) -> [BerlinClockUICellType] {
         var defaultValuesForSingleHourRowArr = [BerlinClockUICellType](repeating: .Blank, count: SINGLE_HOUR_CELL_COUNT)
-        let calendarCurrent = Calendar.current
         let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
         let hour = calendarComponent.hour
         let singleHoursRow = hour! % 5
-        for (index,_) in defaultValuesForSingleHourRowArr.enumerated() {
-            if (index < singleHoursRow) {
-                defaultValuesForSingleHourRowArr[index] = .Red
+        for (positionInArr,_) in defaultValuesForSingleHourRowArr.enumerated() {
+            if (positionInArr < singleHoursRow) {
+                defaultValuesForSingleHourRowArr[positionInArr] = .Red
             }else{
                 break
             }
@@ -69,13 +67,12 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     
     func valuesForFiveHoursRow(time: Date) -> [BerlinClockUICellType] {
         var defaultValuesForFiveHourRowArr = [BerlinClockUICellType](repeating: .Blank, count: FIVE_HOUR_CELL_COUNT)
-        let calendarCurrent = Calendar.current
         let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
         let hour = calendarComponent.hour
         let fiveHoursRow = hour! / 5
-        for (index,_) in defaultValuesForFiveHourRowArr.enumerated() {
-            if (index < fiveHoursRow) {
-                defaultValuesForFiveHourRowArr[index] = .Red
+        for (positionInArr,_) in defaultValuesForFiveHourRowArr.enumerated() {
+            if (positionInArr < fiveHoursRow) {
+                defaultValuesForFiveHourRowArr[positionInArr] = .Red
             }else{
                 break
             }
@@ -85,7 +82,6 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     
     func valuesForSecondsRow(time: Date) -> [BerlinClockUICellType] {
         var defaultValuesForSecondsRowArr = [BerlinClockUICellType](repeating: .Blank, count: SECOND_CELL_COUNT)
-        let calendarCurrent = Calendar.current
         let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
         let second = calendarComponent.second
         let secondsLamp = second! % 2
@@ -108,40 +104,31 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     }
     
     func berlinToDigital(berlinDataArr: [BerlinClockUICellType]) -> String {
-        var seconds = 0
+        var seconds = 1
         var hour = 0
         var minutes = 0
-        for (index,item) in berlinDataArr.enumerated() {
-            if(index == 0 ){//Seconds - 1 Block
-                if(item == BerlinClockUICellType.Red){
+        for (positionInArr,berlinClockUICellType) in berlinDataArr.enumerated() {
+            if(berlinClockUICellType != BerlinClockUICellType.Blank){
+                switch positionInArr {
+                case 0 :
                     seconds = 0
-                }else{
-                    seconds = 1
-                }
-            }else if(index >= 1 && index <= 4){//Five Hours - 4 Blocks
-                if(item == BerlinClockUICellType.Red){
+                case 1...4:
                     hour = hour + 5
-                }
-            }else if(index >= 5 && index <= 8){//One Hour - 4 Blocks
-                if(item == BerlinClockUICellType.Red){
+                case 5...8:
                     hour = hour + 1
-                }
-            }else if(index >= 9 && index <= 19){//Five minutes - 11 Blocks
-                if(item == BerlinClockUICellType.Red || item == BerlinClockUICellType.Yellow){
+                case 9...19:
                     minutes = minutes + 5
-                }
-            }else{//One Minutes - 4 Blocks
-                if(item == BerlinClockUICellType.Yellow){
+                case 20...23:
                     minutes = minutes + 1
+                default: break
                 }
             }
         }
         let date = Date()
-        let calendar = Calendar.current
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"//23:59:59
-        let sampleDate = calendar.date(bySettingHour: hour, minute: minutes, second: seconds, of: date)
-        let timeInString = dateFormatter.string(from: sampleDate!)
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let dateSetByComponent = calendarCurrent.date(bySettingHour: hour, minute: minutes, second: seconds, of: date)
+        let timeInString = dateFormatter.string(from: dateSetByComponent!)
         return timeInString
     }
     

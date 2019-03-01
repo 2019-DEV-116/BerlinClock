@@ -10,8 +10,5 @@ class ViewController: UIViewController,BerlinClockView {
     func loadTimeValuesInBerlinClock(cellTypeArray: [[BerlinClockUICellType]]) {
         print(cellTypeArray)
     }
-
-
-
 }
 
