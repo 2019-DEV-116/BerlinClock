@@ -15,4 +15,6 @@ protocol BerlinClockPresenterProtocol{
     
     func valuesForSecondsRow(time : Date) -> [BerlinClockUICellType]
     
+    func digitalToBerlin(time: Date) -> [[BerlinClockUICellType]]
+    
 }

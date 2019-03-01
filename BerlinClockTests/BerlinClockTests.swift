@@ -133,7 +133,14 @@ class BerlinClockTests: XCTestCase {
         
         XCTAssertEqual(testOneExpectedResult, testOneResult)
         XCTAssertEqual(testTwoExpectedResult, testTwoResult)
-        
     }
 
+    func testDigitalToBerlinForGivenTime(){
+        let testOne = dateFormatter!.date(from: "23:59:59")
+        let testOneExpectedResult = [[cellType.Blank],[cellType.Red,cellType.Red,cellType.Red,cellType.Red],[cellType.Red,cellType.Red,cellType.Red,cellType.Blank],[cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow],[cellType.Yellow,cellType.Yellow,cellType.Yellow,cellType.Yellow]]
+        
+        let testOneResult = berlinCalendarPresenter.digitalToBerlin(time: testOne!)
+        
+        XCTAssertEqual(testOneResult, testOneExpectedResult)
+    }
 }
