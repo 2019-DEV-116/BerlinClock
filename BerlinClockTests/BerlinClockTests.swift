@@ -160,8 +160,22 @@ class BerlinClockTests: XCTestCase {
     func testBerlinToDigital(){
         let testOneExpectedResult = "23:59:01"
         let testOne = [cellType.Blank,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Blank,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Yellow,cellType.Yellow,cellType.Yellow,cellType.Yellow]
+        let testTwoExpectedResult = "00:00:00"
+        let testTwo = [cellType.Red,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank]
+        let testThreeExpectedResult = "16:50:00"
+        let testThree = [cellType.Red,cellType.Red,cellType.Red,cellType.Red,cellType.Blank,cellType.Red,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank]
+        let testFourExpectedResult = "11:37:01"
+        let testFour = [cellType.Blank,cellType.Red,cellType.Red,cellType.Blank,cellType.Blank,cellType.Red,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Yellow,cellType.Red,cellType.Yellow,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Blank,cellType.Yellow,cellType.Yellow,cellType.Blank,cellType.Blank]
         
         let testOneResult = berlinCalendarPresenter.berlinToDigital(berlinDataArr : testOne)
+        let testTwoResult = berlinCalendarPresenter.berlinToDigital(berlinDataArr : testTwo)
+        let testThreeResult = berlinCalendarPresenter.berlinToDigital(berlinDataArr : testThree)
+        let testFourResult = berlinCalendarPresenter.berlinToDigital(berlinDataArr : testFour)
+        
         XCTAssertEqual(testOneResult, testOneExpectedResult)
+        XCTAssertEqual(testTwoResult, testTwoExpectedResult)
+        XCTAssertEqual(testThreeResult, testThreeExpectedResult)
+        XCTAssertEqual(testFourResult, testFourExpectedResult)
+        XCTAssertNotEqual(testOneResult, testTwoExpectedResult)
     }
 }

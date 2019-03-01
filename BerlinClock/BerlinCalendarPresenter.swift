@@ -108,7 +108,41 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     }
     
     func berlinToDigital(berlinDataArr: [BerlinClockUICellType]) -> String {
-        return "00:00:00"
+        var seconds = 0
+        var hour = 0
+        var minutes = 0
+        for (index,item) in berlinDataArr.enumerated() {
+            if(index == 0 ){//Seconds - 1 Block
+                if(item == BerlinClockUICellType.Red){
+                    seconds = 0
+                }else{
+                    seconds = 1
+                }
+            }else if(index >= 1 && index <= 4){//Five Hours - 4 Blocks
+                if(item == BerlinClockUICellType.Red){
+                    hour = hour + 5
+                }
+            }else if(index >= 5 && index <= 8){//One Hour - 4 Blocks
+                if(item == BerlinClockUICellType.Red){
+                    hour = hour + 1
+                }
+            }else if(index >= 9 && index <= 19){//Five minutes - 11 Blocks
+                if(item == BerlinClockUICellType.Red || item == BerlinClockUICellType.Yellow){
+                    minutes = minutes + 5
+                }
+            }else{//One Minutes - 4 Blocks
+                if(item == BerlinClockUICellType.Yellow){
+                    minutes = minutes + 1
+                }
+            }
+        }
+        let date = Date()
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"//23:59:59
+        let sampleDate = calendar.date(bySettingHour: hour, minute: minutes, second: seconds, of: date)
+        let timeInString = dateFormatter.string(from: sampleDate!)
+        return timeInString
     }
     
 }
