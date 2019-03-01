@@ -145,4 +145,9 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
         return timeInString
     }
     
+    func getBerlinClockDateFromThisTime(time: Date) {
+        let berlinCellValuesToExploreInUI = digitalToBerlin(time: time)
+        self.berlinClockView?.loadTimeValuesInBerlinClock(cellTypeArray: berlinCellValuesToExploreInUI)
+    }
+    
 }
