@@ -32,7 +32,22 @@ class BerlinCalendarPresenter : BerlinClockPresenterProtocol{
     }
     
     func valuesForFiveMinutesRow(time: Date) -> [BerlinClockUICellType] {
-        let defaultValuesForFiveMinutesRowArr = [BerlinClockUICellType](repeating: .Blank, count: FIVE_MINUTE_CELL_COUNT)
+        var defaultValuesForFiveMinutesRowArr = [BerlinClockUICellType](repeating: .Blank, count: FIVE_MINUTE_CELL_COUNT)
+        let calendarCurrent = Calendar.current
+        let calendarComponent = calendarCurrent.dateComponents([.hour,.minute,.second], from : time)
+        let minute = calendarComponent.minute
+        let fiveMinutesCount = minute! / 5
+        for (index,_) in defaultValuesForFiveMinutesRowArr.enumerated() {
+            if (index < fiveMinutesCount) {
+                if(index == 2 || index == 5 || index == 8){
+                    defaultValuesForFiveMinutesRowArr[index] = .Red
+                }else{
+                    defaultValuesForFiveMinutesRowArr[index] = .Yellow
+                }
+            }else{
+                break
+            }
+        }
         return defaultValuesForFiveMinutesRowArr;
     }
     
