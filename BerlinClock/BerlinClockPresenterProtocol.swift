@@ -13,4 +13,6 @@ protocol BerlinClockPresenterProtocol{
     
     func valuesForFiveHoursRow(time : Date) -> [BerlinClockUICellType]
     
+    func valuesForSecondsRow(time : Date) -> [BerlinClockUICellType]
+    
 }
